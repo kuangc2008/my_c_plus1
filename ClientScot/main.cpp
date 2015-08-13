@@ -22,6 +22,12 @@ void copy_str1(char* from, char* to) {
     *to = '\0';
 }
 
+void copy_str2(char* from, char* to) {
+    while( (*to++ = *from++) != '\0') {
+    }
+}
+
+
 int main(int argc, const char * argv[]) {
     // insert code here...
     
@@ -34,7 +40,7 @@ int main(int argc, const char * argv[]) {
     char from[100] = {};
     char to[100] = {};
     strcpy(from, "heheniMeiA");
-    copy_str1(from, to);
+    copy_str2(from, to);
     printf("%s", to);
     
     return 0;
