@@ -22,9 +22,17 @@ void copy_str1(char* from, char* to) {
     *to = '\0';
 }
 
-void copy_str2(char* from, char* to) {
+int copy_str2(char* from, char* to) {
+    int ret = 0;
+    if(from == NULL || to == NULL) {
+        ret = -1;
+        printf("func copy_str2(); %d (from = =null|| to == null)", ret);
+        return ret;
+    }
+    
     while( (*to++ = *from++) != '\0') {
     }
+    return ret;
 }
 
 
@@ -39,8 +47,10 @@ int main(int argc, const char * argv[]) {
     //test 1
     char from[100] = {};
     char to[100] = {};
+    char *from2;
     strcpy(from, "heheniMeiA");
     copy_str2(from, to);
+    copy_str2(from2, to);
     printf("%s", to);
     
     return 0;
