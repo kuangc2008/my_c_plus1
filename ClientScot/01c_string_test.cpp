@@ -14,7 +14,7 @@
 
 #include "ctssocket.h"
 
-//================字符串拷贝
+//================1 字符串拷贝
 void copy_str1(char* from, char* to) {
     for(; *from != '\0'; from++, to++) {
         *to = *from;
@@ -50,7 +50,7 @@ int main2(int argc, const char * argv[]) {
     return 0;
 }
 
-//=========================查找字符串中某字符出现的次数
+//=========================2 查找字符串中某字符出现的次数
 
 int main3(int argc, const char * argv[]) {
     // insert code here...
@@ -117,7 +117,7 @@ int get_char_count(char* srouce, char* sub, int *count) {
 }
 
 
-//========================================
+//========================================3 
 
 
 
