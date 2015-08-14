@@ -67,7 +67,7 @@ int main3(int argc, const char * argv[]) {
     return 0;
 }
 
-int main(int argc, const char * argv[]) {
+int main4(int argc, const char * argv[]) {
     // insert code here...
     //test 1
     char *source = "abc123,2abc343,abc,13434,abc";
@@ -89,3 +89,42 @@ int main(int argc, const char * argv[]) {
     printf("count is %d", count);
     return 0;
 }
+
+int get_char_count(char* srouce, char* sub, int *count);
+int main(int argc, const char * argv[]) {
+    // insert code here...
+    //test 1
+    char *source = "abc123,2abc343,abc,13434,abc";
+    char *searchStr = "abc";
+   
+    int a;
+    get_char_count(source, searchStr, &a);
+    printf("count is %d", a);
+    return 0;
+}
+
+int get_char_count(char* srouce, char* sub, int *count) {
+    int strCount = 0;
+    while( srouce = strstr(srouce, sub)) {
+        strCount++;
+        srouce = srouce + strlen(sub);
+        if( *srouce == '\0') {
+            break;
+        }
+    }
+    *count = strCount;
+    return 0;
+}
+
+
+//========================================
+
+
+
+
+
+
+
+
+
+
