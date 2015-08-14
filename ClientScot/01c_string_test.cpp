@@ -121,7 +121,7 @@ int get_char_count(char* srouce, char* sub, int *count) {
 
 
 
-int main(int argc, const char * argv[]) {
+int main6(int argc, const char * argv[]) {
     char *source = "     ababab    ";
     int len = strlen(source);
     
@@ -147,9 +147,42 @@ int main(int argc, const char * argv[]) {
     for( int i = start; i<= end; i++) {
         *(dest + i - start) = *(source + i);
     }
+    *(dest + end - start + 1) = '\0';
     
     printf("%s\n", dest);
+    return 0;
+}
+
+
+void trim(char *source, char* out) {
     
+    int start;
+    for(start = 0 ; *(source + start) != '\0'; start++) {
+        if( *(source + start) != ' ') {
+            break;
+        }
+    }
+    
+    int len = strlen(source);
+    int end;
+    for(end = len - 1; *(source + end) != '\0'; end--) {
+        if( *(source + end)  != ' ') {
+            break;
+        }
+    }
+    
+    memcpy(out, source + start, end - start + 1);
+    
+}
+
+int main(int argc, const char * argv[]) {
+    char *source = "     ababab    ";
+    int len = strlen(source);
+    char dest[len];
+    trim(source, dest);
+    
+    printf("%s\n", dest);
+    return 0;
 }
 
 
