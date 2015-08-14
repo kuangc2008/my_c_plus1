@@ -91,7 +91,7 @@ int main4(int argc, const char * argv[]) {
 }
 
 int get_char_count(char* srouce, char* sub, int *count);
-int main(int argc, const char * argv[]) {
+int main5(int argc, const char * argv[]) {
     // insert code here...
     //test 1
     char *source = "abc123,2abc343,abc,13434,abc";
@@ -117,7 +117,40 @@ int get_char_count(char* srouce, char* sub, int *count) {
 }
 
 
-//========================================3 
+//========================================3 string  trim
+
+
+
+int main(int argc, const char * argv[]) {
+    char *source = "     ababab    ";
+    int len = strlen(source);
+    
+    for(int i=0; i<len;i++) {
+        printf("%c\n", *(source + i));
+    }
+    
+    int start;
+    for(start = 0 ; *(source + start) != '\0'; start++) {
+        if( *(source + start) != ' ') {
+            break;
+        }
+    }
+    
+    int end ;
+    for(end = len - 1; *(source + end) != '\0'; end--) {
+        if( *(source + end)  != ' ') {
+            break;
+        }
+    }
+    
+    char dest[len];
+    for( int i = start; i<= end; i++) {
+        *(dest + i - start) = *(source + i);
+    }
+    
+    printf("%s\n", dest);
+    
+}
 
 
 
