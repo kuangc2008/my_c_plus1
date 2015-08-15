@@ -183,7 +183,7 @@ int main7(int argc, const char * argv[]) {
 }
 
 
-int main(int argc ,const char * argsv[] ) {
+int main8(int argc ,const char * argsv[] ) {
     char *source = "123";
     char hehe[] = "abc";
     
@@ -192,14 +192,37 @@ int main(int argc ,const char * argsv[] ) {
     
     printf("%s", source);
     printf("%s", hehe);
+    return 0;
     
 }
 
 
 
+//***********************string reverse
 
 
 
+void swap(char* i, char* j) {
+    char w = *i;
+    *i = *j;
+    *j = w;
+}
 
+void reverse(char *string) {
+    size_t start = 0, end = strlen(string) -1 ;
+    while(start < end) {
+        swap( string + start, string + end);
+        start ++;
+        end --;
+    }
+}
 
+int main(int argc ,const char * argsv[] ) {
+    
+    char hehe[] = "abcdscsdcsdfef";
+    reverse(hehe);
+    printf("%s", hehe);
+   
+
+}
 
