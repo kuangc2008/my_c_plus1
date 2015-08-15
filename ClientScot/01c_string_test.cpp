@@ -189,6 +189,8 @@ int main8(int argc ,const char * argsv[] ) {
     
     *hehe = 'd';
   //  *source = 'e';  //指向的内存块是常量；   char[] souce是非常量
+    //  char *s = "abc";
+    //  char s[] = "abc"  ====   char *s = abc;   strcpy(s, "abc";
     
     printf("%s", source);
     printf("%s", hehe);
@@ -198,9 +200,7 @@ int main8(int argc ,const char * argsv[] ) {
 
 
 
-//***********************string reverse
-
-
+//***********************4 5string reverse
 
 void swap(char* i, char* j) {
     char w = *i;
@@ -217,12 +217,83 @@ void reverse(char *string) {
     }
 }
 
-int main(int argc ,const char * argsv[] ) {
+int main9(int argc ,const char * argsv[] ) {
     
     char hehe[] = "abcdscsdcsdfef";
     reverse(hehe);
     printf("%s", hehe);
-   
-
+    return 0;
 }
+
+
+
+//******************* 5 const
+int hehe_const(const char *);
+
+int main10(int argc ,const char * argsv[] ) {
+    const char a= 10;
+    int const b = 12;  //same
+    
+    const char *c;     //如果const在*之前，修饰的是c指向的值
+    char *const d = NULL;    //如果const在*之后，修饰d，d是指针变量;  不可改变指针，可改变指向值
+    const char *const e = NULL;
+    
+    return 0;
+}
+
+
+//****************6  二级指针:  分割一个字符串，返回字符数组以及大小
+int splitStr(const char *ss, const char c, char ssArray[20][10], int *len) { //这个地方为什么不能用*号呢
+    int size = 0;
+    char *find_ss;
+    int start;
+    char *tmpString;
+    while ( (find_ss = strchr(ss, c)) != NULL) {  //123,456 ->  ,456
+        start = (find_ss - ss);
+        tmpString = ssArray[size];
+        memcpy(tmpString, ss, start);
+        *(tmpString + start) = '\0';
+        size++;
+        ss = find_ss + 1;
+    }
+
+     tmpString = ssArray[size];
+    memcpy(tmpString, ss, strlen(ss));
+               size++;
+    
+    *len = size;
+    
+    return 0;
+}
+
+int printArray(char array[][10], int size) {
+    for(int i=0; i<size; i++) {
+        printf("%s\n", *(array + i));
+    }
+    return 0;
+}
+
+int main(int argc ,const char * argsv[] ) {
+    const char *ss = "abc,edf,gette,grgrg,grdgrdg, fesfe  ,,b";
+    const char c = ',';
+    char ssArray[20][10];
+    int len = 0;
+    splitStr(ss, c, ssArray, &len);
+    
+    printArray(ssArray, len);
+    
+    return 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
