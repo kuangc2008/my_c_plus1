@@ -118,9 +118,6 @@ int get_char_count(char* srouce, char* sub, int *count) {
 
 
 //========================================3 string  trim
-
-
-
 int main6(int argc, const char * argv[]) {
     char *source = "     ababab    ";
     int len = strlen(source);
@@ -175,7 +172,7 @@ void trim(char *source, char* out) {
     
 }
 
-int main(int argc, const char * argv[]) {
+int main7(int argc, const char * argv[]) {
     char *source = "     ababab    ";
     int len = strlen(source);
     char dest[len];
@@ -185,6 +182,18 @@ int main(int argc, const char * argv[]) {
     return 0;
 }
 
+
+int main(int argc ,const char * argsv[] ) {
+    char *source = "123";
+    char hehe[] = "abc";
+    
+    *hehe = 'd';
+  //  *source = 'e';  //指向的内存块是常量；   char[] souce是非常量
+    
+    printf("%s", source);
+    printf("%s", hehe);
+    
+}
 
 
 
