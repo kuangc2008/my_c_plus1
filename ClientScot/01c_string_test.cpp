@@ -250,14 +250,14 @@ int splitStr(const char *ss, const char c, char ssArray[20][10], int *len) { //�
     char *tmpString;
     while ( (find_ss = strchr(ss, c)) != NULL) {  //123,456 ->  ,456
         start = (find_ss - ss);
-        tmpString = ssArray[size];
-        memcpy(tmpString, ss, start);
-        *(tmpString + start) = '\0';
+     //   tmpString = ssArray[size];
+        memcpy(ssArray[size], ss, start);
+        ssArray[size][start] = '\0';
         size++;
         ss = find_ss + 1;
     }
 
-     tmpString = ssArray[size];
+    tmpString = ssArray[size];
     memcpy(tmpString, ss, strlen(ss));
                size++;
     
@@ -273,7 +273,7 @@ int printArray(char array[][10], int size) {
     return 0;
 }
 
-int main(int argc ,const char * argsv[] ) {
+int main11(int argc ,const char * argsv[] ) {
     const char *ss = "abc,edf,gette,grgrg,grdgrdg, fesfe  ,,b";
     const char c = ',';
     char ssArray[20][10];
@@ -286,7 +286,29 @@ int main(int argc ,const char * argsv[] ) {
 }
 
 
+//****************7  二位指针
+int main() {
+    char **myArray = (char**) malloc(10 * sizeof(char*));
+    if(myArray == NULL) {
+        return -1;
+    }
+    
+    for(int i=0; i<10; i++) {
+        myArray[i] = (char*) malloc(100);
+    }
 
+    //do
+    
+    
+    
+    for(int i=0; i<10; i++) {
+        free(myArray[i]);
+    }
+    free(myArray);
+    
+    
+    return 0;
+}
 
 
 
