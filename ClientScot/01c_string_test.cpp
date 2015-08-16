@@ -410,8 +410,23 @@ int main() {
 //    a1 = 0x1111;  //编译不不过，因为是指针常量，系统这么做肯定是为了资源回收
     int *p1 = a1;
     
+    
+    {
+        typedef int (*myArray) [5];  //定义数组指针类型
+        myArray myApp = NULL;
+        int b[] = {1, 2, 3, 4,5};
+        myApp = &b;
+        
+        int (*p) [5] = &b;   //直接定义数组指针
+    }
     return 0;
 }
+
+
+
+
+
+
 
 
 
