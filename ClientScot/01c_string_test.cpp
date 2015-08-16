@@ -287,7 +287,7 @@ int main11(int argc ,const char * argsv[] ) {
 
 
 //****************7  二位指针
-int main() {
+int main12() {
     char **myArray = (char**) malloc(10 * sizeof(char*));
     if(myArray == NULL) {
         return -1;
@@ -311,6 +311,107 @@ int main() {
 }
 
 
+//******************分割字符串更正规的做法；  在函数中分配内存，再回首
+char** splitStr2(const char *ss, const char c, int *len) { //这个地方为什么不能用*号呢
+    int size = 0;
+    char *find_ss;
+    int start;
+    char *tmpString;
+    
+    char **ssArray = (char**) malloc(10 * sizeof(char*));
+    if(ssArray == NULL) {
+        return NULL;
+    }
+    
+    for(int i=0; i<10; i++) {
+        ssArray[i] = (char*) malloc(100);
+    }
+    
+    
+    while ( (find_ss = strchr(ss, c)) != NULL) {  //123,456 ->  ,456
+        start = (find_ss - ss);
+        //   tmpString = ssArray[size];
+        memcpy(ssArray[size], ss, start);
+        ssArray[size][start] = '\0';
+        size++;
+        ss = find_ss + 1;
+    }
+    
+    tmpString = ssArray[size];
+    memcpy(tmpString, ss, strlen(ss));
+    size++;
+    
+    *len = size;
+    
+    return ssArray;
+}
+
+int printArray2(char **array, int size) {
+    for(int i=0; i<size; i++) {
+        printf("%s\n", *(array + i));
+    }
+    return 0;
+}
+
+int splitStr2_release(char **myArray, int len) {
+    for(int i=0; i<len; i++) {
+        free(myArray[i]);
+    }
+    free(myArray);
+    return 0;
+}
+
+int main13(int argc ,const char * argsv[] ) {
+    const char *ss = "abc,edf,gette,grgrg,grdgrdg, fesfe  ,,b";
+    const char c = ',';
+    int len = 0;
+    char **ssArray = splitStr2(ss, c, &len);
+    
+    printArray2(ssArray, len);
+    
+    splitStr2_release(ssArray, len);
+    return 0;
+}
+
+//****************************数组类型
+int main14() {
+    typedef int (MYINT5)[5];
+    MYINT5 hehe; // int hehe[5];   MYINTS为数据类型
+
+    for(int i=0; i<5; i++) {
+        *(hehe + i) = i + 1;
+    }
+    
+    for(int i=0; i<5; i++) {
+        printf("%d", hehe[i]);
+    }
+    
+    //注意点：
+    printf("size;%d; %d, %d %d ", sizeof(hehe), &hehe, &hehe + 1, hehe+1);  //注意点： 步长的概念
+    return 0;
+}
+
+
+
+//******************** 数组类型的指针
+int main() {
+    typedef int (MYINT)[5];
+    MYINT *arrayPoint;
+    
+    int a[] = {1, 2, 3, 4, 5};
+    arrayPoint = &a;
+    
+    for(int i=0; i<5; i++) {
+        printf("%d", (*arrayPoint)[i]);
+    }
+    
+    
+    int a1[] = {1, 2, 3};
+//    a1 = 0x1111;  //编译不不过，因为是指针常量，系统这么做肯定是为了资源回收
+    int *p1 = a1;
+    
+    return 0;
+}
 
 
 
