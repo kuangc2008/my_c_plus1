@@ -394,7 +394,7 @@ int main14() {
 
 
 //******************** 数组类型的指针
-int main() {
+int main15() {
     typedef int (MYINT)[5];
     MYINT *arrayPoint;
     
@@ -424,9 +424,37 @@ int main() {
 
 
 
+//******************多为数组
 
-
-
+int main() {
+    
+    
+    int i = 10;
+    int *p = &i;
+    printf("p:%d, &p:%d \n", p , &p); //这两者是不一样的; p:1606416312, &p:1606416304
+    
+    int a[2][5];
+    printf("&a:%d, &a+1:%d \n", &a, &a + 1); //直接走满; &a:1606416320, &a+1:1606416360
+    printf("&a:%d, a+1):%d \n", a, a+1);  //单加一行； 这应该是系统的优化： a = &a[0];  &a:1606416320, a+1):1606416340
+ printf("&a:%d, a+1):%d \n", &a[0][0], &a[1]);  //&a:1606416320, a+1):1606416340
+    
+    
+    int tmp = 0;
+    int (*arrayPint)[5] = a;
+    for(int i=0; i<2; i++) {
+        for(int j=0; j<5; j++) {
+         //   arrayPint[i][j] = tmp++;  可以
+         //   (* (arrayPint + i))[j] = tmp++;  //也可以的
+            *(*(arrayPint + i) + j) = tmp++;
+            printf("%d ", a[i][j]);
+        }
+        printf("\n");
+    }
+    
+    
+    
+    return 0;
+}
 
 
 
