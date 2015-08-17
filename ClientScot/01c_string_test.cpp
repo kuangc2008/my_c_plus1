@@ -426,7 +426,7 @@ int main15() {
 
 //******************多为数组
 
-int main() {
+int main16() {
     
     
     int i = 10;
@@ -457,7 +457,49 @@ int main() {
 }
 
 
+//**************二位指针的模型
 
+int main17() {
+    char *p1[] = {"123", "456", "889"};
+    char p2[3][4] ={"123", "456", "889"};
+    
+    char **p3 = (char**)malloc( 3 * sizeof(char *));
+    for(int i=0; i< 3;i ++ ) {
+        p3[i] = (char*) malloc(10 * sizeof(char));
+        sprintf(p3[i], "%d%d%d", i);
+    }
+    
+    return 0;
+}
+
+//*************从一个字符串数组中取出key值，并返回位置
+int getValueFromKey(char **map, int mapSize, const char *key, int *position) {
+    if( map == NULL || key == NULL || position == NULL ) {
+        return 2;
+    }
+    
+    for(int i=0; i<mapSize; i++) {
+        if(strcmp(*(map+i), key) == 0 ) {
+            *position = i;
+            break;
+        }
+    }
+    
+    return 0;
+    
+    
+}
+
+#define SIZE(x) (sizeof(x)/sizeof(*x))
+int main() {
+    char *ss[] = {"123", "456", "789", "589"};
+    int len = SIZE(ss);
+    int pos = 0;
+    getValueFromKey(ss, len, "789", &pos);
+    printf("%d", pos);
+    
+    return 0;
+}
 
 
 
